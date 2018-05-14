@@ -4,17 +4,20 @@ Project(WebVtk)
 SET (TARGET_NAME "WebVtk")
 
 # Change according to local enviornment
-#SET (WT_SDK_DIR "/home/ubuser/wtvtk/wt/install" CACHE PATH "")
-#SET (VTK_LOCALINSTALL_DIR "/home/ubuser/vtkHome/install" CACHE PATH "")
-#SET (VTK_DIR ${VTK_LOCALINSTALL_DIR}/lib/cmake/vtk-7.0)
-SET (WT_SDK_DIR "C:/Develop/Wt-3.3.6-msvs2015-Windows-x64-SDK" CACHE PATH "")
-SET (VTK_LOCALINSTALL_DIR "C:/Develop/VTK7.0.Opengl" CACHE PATH "")
-SET (VTK_DIR "${VTK_LOCALINSTALL_DIR}/lib/cmake/vtk-7.0" CACHE PATH "")
+IF(UNIX)
+    SET (WT_SDK_DIR "~/develop/Wt" CACHE PATH "")
+    SET (VTK_LOCALINSTALL_DIR "~/develop/VTK" CACHE PATH "")
+    SET (VTK_DIR ${VTK_LOCALINSTALL_DIR}/lib/cmake/vtk-7.0)
+ELSE()
+    SET (WT_SDK_DIR "C:/Develop/Wt-3.3.6-msvs2015-Windows-x64-SDK" CACHE PATH "")
+    SET (VTK_LOCALINSTALL_DIR "C:/Develop/VTK7.0.Opengl" CACHE PATH "")
+    SET (VTK_DIR "${VTK_LOCALINSTALL_DIR}/lib/cmake/vtk-7.0" CACHE PATH "")
+ENDIF()
 
-find_package(VTK REQUIRED)
-include(${VTK_USE_FILE})#
+#find_package(VTK REQUIRED)
+#include(${VTK_USE_FILE})#
 
-if(UNIX)
+IF(UNIX)
     SET (USE_PREBUILD_WT_SDK OFF CACHE BOOL "use widnows prebuild wt binary" )
 ELSE()
     SET (USE_PREBUILD_WT_SDK ON CACHE BOOL "use widnows prebuild wt binary" )
@@ -89,20 +92,9 @@ TARGET_LINK_LIBRARIES(${TARGET_NAME}
     vtkRenderingFreeType-7.0
     vtkImagingColor-7.0
     vtkChartsCore-7.0
-
+    vtkRenderingOpenGL-7.0
+    vtkRenderingVolumeOpenGL-7.0
  )
-
-#IF(WIN32)
-#    TARGET_LINK_LIBRARIES(${TARGET_NAME}
-#    vtkRenderingOpenGL2-7.0
-#    vtkRenderingVolumeOpenGL2-7.0
-#    )
-#ELSE() # unbuntu 14 do not supoort VTK opengl 2
-    TARGET_LINK_LIBRARIES(${TARGET_NAME}
-        vtkRenderingOpenGL-7.0
-        vtkRenderingVolumeOpenGL-7.0
-    )
-#ENDIF()
 
 if(UNIX)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

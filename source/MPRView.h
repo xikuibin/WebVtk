@@ -1,5 +1,8 @@
 #pragma once
 
+#define vtkRenderingCore_AUTOINIT 2(vtkInteractionStyle,vtkRenderingOpenGL)
+#define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
+
 // some standard vtk headers
 #include <vtkSmartPointer.h>
 #include <vtkObjectFactory.h>

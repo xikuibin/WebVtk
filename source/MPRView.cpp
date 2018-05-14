@@ -28,8 +28,11 @@
 
 #include <sstream>
 
+#ifdef WIN32
 const std::string DICOM_DATA_FOLDER = "C:\\Develop\\SampleDICOMData";
-
+#else
+const std::string DICOM_DATA_FOLDER = "/home/ubuser/develop/SampleDICOMData";
+#endif
 int MPRView::createRender(int MPRmode)
 {
 	std::string folder = DICOM_DATA_FOLDER;
