@@ -46,8 +46,8 @@ There is WebVtk.bat to show how to direct use the result. Please read Wektoolkit
 - OS: Ubuntu 14. Ubuntu is the best choice for Vtk. Desktop compnent is necessary for Opengl.
 - Compiler: gcc 4.8
 - CMake: CMake 3.2 used. Any CMake 3.x should work.
-- Wt: Wt 3.3.6 build on same machine. Saved in WT_SDK_DIR
-- Vtk: Vtk 7.x build as vtk official document. All files are saved in  VTK_LOCALINSTALL_DIR.
+- Wt: Wt 3.3.6 build on same machine. Saved in WT_SDK_DIR, which is created when `make install`.
+- Vtk: Vtk 7.x build as vtk official document. All files are saved in  VTK_LOCALINSTALL_DIR, which is created when `make install`.
 
 The Wt and Vtk path is used in CMake files.
 
